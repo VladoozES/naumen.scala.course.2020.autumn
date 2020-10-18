@@ -94,6 +94,8 @@ class Exercises {
     "Chrome" ->   (3,   7.18),   "Cesium" ->    (7,   1.873), "Zirconium" -> (3,   6.45)
   )
 
+  
+  
   def sortByHeavyweight(ballsArray: Map[String, (Int, Double)] = balls): Seq[String] = {
     var temp_map: Map[String, Double] = Map()
     for ((name, param) <- ballsArray){
