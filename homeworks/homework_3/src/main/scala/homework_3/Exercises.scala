@@ -73,10 +73,26 @@ object Exercises {
    * Реализуйте на основе нее 3 варианта суммирования 2х чисел, отличающиеся способом передачи этих 2х чисел в функцию sumIntegers.
    * Как минимум одна из реализаций должна использовать тип данных (класс) написанный вами самостоятельно.
    */
-  def sum1(x: Int, y: Int): Int = sumIntegers(???)
+  def sum1(x: Int, y: Int): Int = sumIntegers(Seq[Int](x, y))
 
-  def sum2(x: Int, y: Int): Int = sumIntegers(???)
+  def sum2(x: Int, y: Int): Int = sumIntegers(List(x, y))
 
-  def sum3(x: Int, y: Int): Int = sumIntegers(???)
+  def sum3(x: Int, y: Int): Int = sumIntegers(MyClass(x, y))
 
+}
+
+case class MyClass[Int](x: Int, y: Int) extends Iterator[Int]{
+  val currentSize = 2
+  var current = 0
+  def hasNext: Boolean = current < currentSize
+  def next = {
+    if (current == 0) {
+      current = current + 1
+      x
+    }
+    else {
+      current = current + 1
+      y
+    }
+  }
 }
