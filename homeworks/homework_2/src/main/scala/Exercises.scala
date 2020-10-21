@@ -1,6 +1,6 @@
 import scala.util.control.Breaks.{break, breakable}
 
-class Exercises {
+object Exercises extends App{
   /*ПРИМЕР*/
   /*Реализовать функцию, которая возвращает все целые числа в заданном диапазоне (от iForm до iTo), которые делятся
   на 3 или на 7.*/
@@ -68,9 +68,9 @@ class Exercises {
                 rightVec0: Vector2D, rightVec1: Vector2D): Double =
     func(leftVec0, leftVec1) + func(rightVec0, rightVec1)
   def sumScalars(leftVec0: Vector2D, leftVec1: Vector2D, rightVec0: Vector2D, rightVec1: Vector2D): Double =
-      sumByFunc(leftVec0, leftVec1, scalar, rightVec0, rightVec1)
+    sumByFunc(leftVec0, leftVec1, scalar, rightVec0, rightVec1)
   def sumCosines(leftVec0: Vector2D, leftVec1: Vector2D, rightVec0: Vector2D, rightVec1: Vector2D): Double =
-      sumByFunc(leftVec0, leftVec1, cosBetween, rightVec0, rightVec1)
+    sumByFunc(leftVec0, leftVec1, cosBetween, rightVec0, rightVec1)
 
 
 
@@ -94,12 +94,10 @@ class Exercises {
     "Chrome" ->   (3,   7.18),   "Cesium" ->    (7,   1.873), "Zirconium" -> (3,   6.45)
   )
 
-  
-  
   def sortByHeavyweight(ballsArray: Map[String, (Int, Double)] = balls): Seq[String] = {
     var temp_map: Map[String, Double] = Map()
     for ((name, param) <- ballsArray){
-      temp_map = temp_map + (name -> Math.pow(param[0], 3) * java.lang.Math.PI * param[1] * 3 / 3)
+      temp_map = temp_map + (name -> Math.pow(param._1, 3) * java.lang.Math.PI * param._2 * 3 / 3)
     }
     val temp_seq = temp_map.toSeq.sortWith(_._2 > _._2)
     var res_list: List[String] = List()
