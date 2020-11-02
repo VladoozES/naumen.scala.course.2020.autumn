@@ -1,3 +1,5 @@
+import scala.util.control.Breaks._
+
 trait Cell {
 
 }
@@ -19,9 +21,20 @@ class StringCell(str: String) extends Cell {
 }
 
 class ReferenceCell(ix: Int, iy: Int, table: Table) extends Cell {
-  val index_x = ix
-  val index_y = iy
-  val source = table
-
-  override def toString: String = source.getCell(ix, iy).toString
+  var value: Option[Cell] = table.getCell(ix, iy)
+  var is_cyclic = false
+  var temp = table.getCell(ix, iy)
+  breakable {
+    while (temp.isInstanceOf[ReferenceCell]) {
+      if (temp == value) {
+        is_cyclic = true
+        break
+      }
+      temp = temp.asInstanceOf[ReferenceCell].value
+    }
+  }
+  override def toString: String = {
+    if (is_cyclic) "cyclic"
+    value.toString
+  }
 }
