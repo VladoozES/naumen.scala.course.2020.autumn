@@ -31,7 +31,23 @@ object Exercises {
     "S" -> "...", "T" -> "-", "U" -> "..-", "V" -> "...-", "W" -> ".--", "X" -> "-..-",
     "Y" -> "-.--", "Z" -> "--..")
 
-  def morse(text: String): String = ???
+  def morse(text: String): String = {
+    var res_str : String = ""
+    var without_space : Boolean = true
+    for (a <- text) {
+      if (!MORSE.contains(a.toUpper.toString)) {
+        if (a == ' ') res_str += "   "
+        else res_str += a
+        without_space = true
+      }
+      else {
+        if (without_space) res_str += MORSE(a.toUpper.toString)
+        else res_str += " " + MORSE(a.toUpper.toString)
+        without_space = false
+      }
+    }
+    res_str
+  }
 
 
   def wordReverse(text: String): String = ???
