@@ -50,6 +50,18 @@ object Exercises {
   }
 
 
-  def wordReverse(text: String): String = ???
+  def wordReverse(text: String): String = {
+    var res = text
+    val temp = text.split(Array('!', '.', ' ', ',')).filter(element => !element.isEmpty)
+    for (i <- temp) {
+      while (res.contains(i)){
+        val start_index = res.indexOf(i)
+        val input_text = if (i(0).isUpper) {
+          i.reverse (0).toUpper + i.reverse.toLowerCase.substring(1)} else i.reverse
+        res = res.substring(0, start_index) + input_text + res.substring(start_index + i.length)
+      }
+    }
+    res
+  }
 
 }
