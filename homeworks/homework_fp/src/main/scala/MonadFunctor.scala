@@ -21,7 +21,9 @@ trait Monad[F[_]] {
     }
   }
 
-  def compose[A, B, C](f: A => F[B])(g: B => F[C]): A => F[C] = ???
+  def compose[A, B, C](f: A => F[B])(g: B => F[C]): A => F[C] = {
+    a: A => flatMap(f(a))(el => g(el))
+  }
 }
 
 trait Functor[F[_]] {
